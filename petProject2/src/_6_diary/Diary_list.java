@@ -6,12 +6,17 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import _0_base.Mainframe;
+import _5_home.Home;
 
 public class Diary_list {
 
@@ -44,10 +49,14 @@ public class Diary_list {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 400, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		// 공통프레임 적용
+		Mainframe mf = new Mainframe();
+		frame = mf.Mainframe;
+
+		JButton HomeBtn = new JButton("홈으로");
+		HomeBtn.setFont(new Font("굴림", Font.PLAIN, 9));
+		HomeBtn.setBounds(10, 10, 70, 40);
+		frame.getContentPane().add(HomeBtn);
 
 		JLabel titleLabel = new JLabel("My Pet Diary");
 		titleLabel.setForeground(SystemColor.windowBorder);
@@ -79,8 +88,6 @@ public class Diary_list {
 
 		List<Diary_list_VO> dlVO = dl.selectAllBoards();
 
-		
-		
 		for (int i = 0; i < 3; i++) {
 			sub_panel[i] = new JPanel();
 			sub_panel[i].setLayout(new GridLayout(0, 3));
@@ -121,6 +128,24 @@ public class Diary_list {
 
 		JButton btnNewButton_2 = new JButton("3");
 		panel_1.add(btnNewButton_2);
+
+		// 액션 리스너 시작
+		HomeBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							Home window = new Home();
+							window.frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+
+			}
+		});
 
 	}
 }

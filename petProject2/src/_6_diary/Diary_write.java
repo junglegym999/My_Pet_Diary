@@ -22,7 +22,7 @@ import _5_home.Home;
 
 import javax.swing.JTextArea;
 
-public class Diary {
+public class Diary_write {
 
 	public JFrame frame;
 
@@ -30,7 +30,7 @@ public class Diary {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Diary window = new Diary();
+					Diary_write window = new Diary_write();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +39,7 @@ public class Diary {
 		});
 	}
 
-	public Diary() {
+	public Diary_write() {
 		initialize();
 	}
 
@@ -139,12 +139,6 @@ public class Diary {
 		
 		
 		
-		
-		
-		
-		
-		
-		
 		// 등록버튼 눌렀을 때
 		save_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -169,7 +163,7 @@ public class Diary {
 				}
 
 				// 입력받은 값 DB에 넣기
-				DiaryDB ddb = new DiaryDB(today, diary_text, id);
+				Diary_write_DB ddb = new Diary_write_DB(today, diary_text, id);
 				ddb.execute();
 
 				frame.setVisible(false);

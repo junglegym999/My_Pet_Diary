@@ -42,8 +42,6 @@ public class Intro {
 		// 공통프레임 적용
 		Mainframe mf = new Mainframe();
 		frame = mf.Mainframe;
-		
-	
 
 		JLabel subLabel = new JLabel("나만의 반려동물 관리 앱");
 		subLabel.setForeground(SystemColor.controlShadow);
@@ -55,16 +53,14 @@ public class Intro {
 		///////////////////////
 		JLabel iconLabel = new JLabel("");
 
-		ImageIcon logo = new ImageIcon("../../image/logo.png"); // 이미지는 상대경로로 써두기 but 안됨 왜...?
-		
+		ImageIcon logo = new ImageIcon("image/logo.png"); // 이미지는 상대경로로 써두기
+
 		Image img = logo.getImage();
 		Image changeImg = img.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
 		ImageIcon changeLogo = new ImageIcon(changeImg);
-		
-		
 
 		iconLabel.setIcon(changeLogo);
-		iconLabel.setBounds(90, 118, 200, 200);
+		iconLabel.setBounds(100, 118, 200, 200);
 		iconLabel.setHorizontalAlignment(JLabel.CENTER);
 		frame.getContentPane().add(iconLabel);
 
@@ -72,7 +68,7 @@ public class Intro {
 		JLabel titleLabel = new JLabel("My Pet Diary");
 		titleLabel.setFont(new Font("Arial", Font.BOLD, 30));
 		titleLabel.setForeground(SystemColor.DARK_GRAY);
-		titleLabel.setBounds(95, 350, 186, 40);
+		titleLabel.setBounds(95, 350, 200, 40);
 		titleLabel.setHorizontalAlignment(JLabel.CENTER);
 		frame.getContentPane().add(titleLabel);
 

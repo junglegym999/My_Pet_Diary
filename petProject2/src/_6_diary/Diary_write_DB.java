@@ -8,16 +8,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 //Register_animal.java에서 입력받은 동물정보 DB에 넣는 작업 수행하는 클래스
-public class DiaryDB {
+public class Diary_write_DB {
 
 	private String today;
 	private String diary_content;
 	private String id;
 
-	public DiaryDB() {
+	public Diary_write_DB() {
 	}
 
-	public DiaryDB(String today, String diary_content, String id) {
+	public Diary_write_DB(String today, String diary_content, String id) {
 
 		this.today = today;
 		this.diary_content = diary_content;

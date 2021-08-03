@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 import _0_base.Mainframe;
 import _1_intro.Intro;
 import _2_login.Login;
-import _6_diary.Diary;
+import _6_diary.Diary_write;
 import _6_diary.Diary_list;
 
 public class Home {
@@ -83,12 +83,12 @@ public class Home {
 		JLabel iconLabel = new JLabel("");
 		// 이미지아이콘 경로 상대경로로 바꿔줘야함
 		ImageIcon animal;
-		if (type == "강아지") { // 등록된 동물이 강아지일 경우 강아지 이미지 출력
-			animal = new ImageIcon("C:/Users/jisupark/eclipse-workspace/petProject/src/_5_home/dog.png");
-		} else if(type=="고양이") { // 등록된 동물이 고양이일 경우 강아지 이미지 출력
-			animal = new ImageIcon("C:/Users/jisupark/eclipse-workspace/petProject/src/_5_home/cat.png");
+		if (type.equals("강아지")) { // 등록된 동물이 강아지일 경우 강아지 이미지 출력
+			animal = new ImageIcon("image/dog.png");
+		} else if(type.equals("고양이")) { // 등록된 동물이 고양이일 경우 고양이 이미지 출력
+			animal = new ImageIcon("image/cat.png");
 		}else {
-			animal = new ImageIcon("C:/Users/jisupark/eclipse-workspace/petProject2/src/_1_intro/logo.png");
+			animal = new ImageIcon("image/logo.png");
 		}
 
 		Image img = animal.getImage();
@@ -166,7 +166,7 @@ public class Home {
 					public void run() {
 						try {
 
-							Diary window = new Diary();
+							Diary_write window = new Diary_write();
 							window.frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
