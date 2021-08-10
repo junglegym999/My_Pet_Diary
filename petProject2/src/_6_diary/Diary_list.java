@@ -22,9 +22,6 @@ public class Diary_list {
 
 	public JFrame frame;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -38,16 +35,10 @@ public class Diary_list {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public Diary_list() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		// 공통프레임 적용
 		Mainframe mf = new Mainframe();
@@ -72,30 +63,32 @@ public class Diary_list {
 		subtitleLabel.setHorizontalAlignment(JLabel.CENTER);
 		frame.getContentPane().add(subtitleLabel);
 
+		// Diary_list_DB2에서 만든 리스트 가져오기
+		Diary_list_DB2 dl = new Diary_list_DB2();
+		List<Diary_list_VO> list = dl.selectAllBoards();
+
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.ORANGE);
+		panel.setBackground(Color.LIGHT_GRAY);
 		panel.setBounds(23, 120, 330, 350);
 		frame.getContentPane().add(panel);
-		panel.setLayout(new GridLayout(3, 0));
+		panel.setLayout(new GridLayout(list.size(), 0));
 
-		JPanel[] sub_panel = new JPanel[3];// 하나의 게시물이 올라갈 패널 (diary_date, diary_content,상세보기 버튼)
+		JPanel[] sub_panel = new JPanel[list.size()];// 하나의 게시물이 올라갈 패널 (diary_date, diary_content,상세보기 버튼)
 		JLabel dateLabel;
 		JLabel contentLabel;
 		JButton selectBtn;
 
-		// Diary_list_DB2에서 만든 리스트 가져오기
-		Diary_list_DB2 dl = new Diary_list_DB2();
+//		// Diary_list_DB2에서 만든 리스트 가져오기
+//		Diary_list_DB2 dl = new Diary_list_DB2();
+//
+//		List<Diary_list_VO> list = dl.selectAllBoards();
 
-		List<Diary_list_VO> dlVO = dl.selectAllBoards();
-
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < list.size(); i++) {
 			sub_panel[i] = new JPanel();
 			sub_panel[i].setLayout(new GridLayout(0, 3));
-
-			dateLabel = new JLabel(dlVO.get(i).getDiary_date());
-//		
-			contentLabel = new JLabel(dlVO.get(i).getDiary_content());
-
+//list.size() - 1
+			dateLabel = new JLabel(list.get(i).getDiary_date());
+			contentLabel = new JLabel(list.get(i).getDiary_content());
 			selectBtn = new JButton("상세보기");
 
 			sub_panel[i].add(dateLabel);
@@ -115,7 +108,7 @@ public class Diary_list {
 
 		//////////// 하단
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.PINK);
+		panel_1.setBackground(Color.LIGHT_GRAY);
 		panel_1.setBounds(100, 500, 180, 40);
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(new FlowLayout());

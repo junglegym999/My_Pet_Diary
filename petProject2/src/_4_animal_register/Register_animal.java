@@ -24,7 +24,6 @@ public class Register_animal {
 
 	public JFrame frame;
 
-	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -184,11 +183,11 @@ public class Register_animal {
 		frame.getContentPane().add(adopt_day_box);
 
 		// 취소 버튼-----------------------------------------------------------------
-		JButton btnNewButton_1 = new JButton("취소");
-		btnNewButton_1.setFont(new Font("굴림", Font.BOLD, 15));
-		btnNewButton_1.setBounds(100, 480, 80, 30);
-		btnNewButton_1.setHorizontalAlignment(JButton.CENTER);
-		frame.getContentPane().add(btnNewButton_1);
+		JButton back_btn = new JButton("취소");
+		back_btn.setFont(new Font("굴림", Font.BOLD, 15));
+		back_btn.setBounds(100, 480, 80, 30);
+		back_btn.setHorizontalAlignment(JButton.CENTER);
+		frame.getContentPane().add(back_btn);
 
 		// 등록 버튼-------------------------------------------------------------------
 		JButton register_btn = new JButton("등록");
@@ -203,22 +202,22 @@ public class Register_animal {
 
 				// 입력한 값들 체크
 				String name = name_text.getText().trim();
-				
+
 				String type = type_box.getSelectedItem().toString();
-				
+
 				String gender = gender_box.getSelectedItem().toString();
 
 				String birth_year = birth_year_box.getSelectedItem().toString();// 년
 				String birth_month = birth_month_box.getSelectedItem().toString();// 월
 				String birth_day = birth_day_box.getSelectedItem().toString();// 일
-				String birth = birth_year + "."+birth_month +"."+ birth_day;
+				String birth = birth_year + "." + birth_month + "." + birth_day;
 				// birth 변수를 데이터베이스에 넣어야 함
 
 				String adopt_year = adopt_year_box.getSelectedItem().toString();// 년
 				String adopt_month = adopt_month_box.getSelectedItem().toString();// 월
 				String adopt_day = adopt_day_box.getSelectedItem().toString();// 일
-				String adopt = adopt_year + "."+adopt_month +"."+ adopt_day;
-				
+				String adopt = adopt_year + "." + adopt_month + "." + adopt_day;
+
 				// + 주인 아이디는 Login.java에서 static 변수로 저장한 값으로 가져오기
 				String id = Login.mem_id;
 
@@ -234,11 +233,10 @@ public class Register_animal {
 				// 입력받은 값 DB에 넣기
 				registerDB rDB = new registerDB(name, type, gender, birth, adopt, id);
 				rDB.execute();
-				
-				//DB pet_member 테이블, 로그인한 아이디의 HAVE_PET 필드를 1(동물등록완료)값으로 바꿔주기
-				Have_Pet hpt=new Have_Pet();
+
+				// DB pet_member 테이블, 로그인한 아이디의 HAVE_PET 필드를 1(동물등록완료)값으로 바꿔주기
+				Have_Pet hpt = new Have_Pet();
 				hpt.execute();
-				
 
 				frame.setVisible(false);
 				///// Home 화면으로 이동
@@ -251,6 +249,23 @@ public class Register_animal {
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
+					}
+				});
+			}
+		});
+
+		// 취소버튼 눌렀을 때
+		back_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							Register_intro window = new Register_intro();
+							window.frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+
 					}
 				});
 			}
